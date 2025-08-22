@@ -16,13 +16,26 @@ app.get("/princesas", (req, res) => {
 app.get("/princesas/:id", (req, res) => {
     let id = req.params.id;
     id = parseInt(id);
-    const princesa = princesas.find(p => p.id === id);
+    const princesaPorId = princesas.find(p => p.id === id);
 
-    if (princesa) {
-        res.status(200).json(princesa);
+    if (princesaPorId) {
+        res.status(200).json(princesaPorId);
     } else {
         res.status(404).json({
             erro: `Princesa com o ID ${id} não encontrada!`
+        });
+    }
+});
+
+app.get("/princesas/nome/:nome", (req, res) => {
+    let nome = req.params.nome.toLowerCase();
+    const princesaPorNome = princesas.filter(p => p.nome.toLowerCase().includes(nome));
+
+    if (princesaPorNome.length > 0) {
+        res.status(200).json(princesaPorNome);
+    } else {
+        res.status(404).json({
+            erro: `Princesa com o nome ${nome} não encontrada!`
         });
     }
 });
