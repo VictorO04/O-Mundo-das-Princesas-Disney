@@ -53,6 +53,18 @@ app.get("/princesas/reino/:reino", (req, res) => {
     }
 });
 
+app.get("/princesas/ativas/sim", (Req, res) => {
+    const ativa = princesas.filter(a => a.ativa);
+
+    if (ativa) {
+        res.status(200).json(ativa);
+    } else {
+        res.status(404).json({
+            erro: `Nenhuma princesa ativa encontrada!`
+        });
+    }
+});
+
 app.listen(serverPort, () => {
     console.log(`✨ O servidor das princesas está em: http://localhost:${serverPort}`);
 });
