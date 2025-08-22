@@ -40,6 +40,19 @@ app.get("/princesas/nome/:nome", (req, res) => {
     }
 });
 
+app.get("/princesas/reino/:reino", (req, res) => {
+    let reino = req.params.reino.toLowerCase();
+    const princesaPorReino = princesas.filter(p => p.reino.toLowerCase().includes(reino));
+
+    if (princesaPorReino.length > 0) {
+        res.status(200).json(princesaPorReino);
+    } else {
+        res.status(404).json({
+            erro: `Princesa com o reino ${reino} não encontrada!`
+        });
+    }
+});
+
 app.listen(serverPort, () => {
     console.log(`✨ O servidor das princesas está em: http://localhost:${serverPort}`);
 });
