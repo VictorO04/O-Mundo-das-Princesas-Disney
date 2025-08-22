@@ -16,7 +16,6 @@ app.get("/", (req, res) => {
         </head>
         <body style="background-color: rgba(254, 217, 248, 1);">
             <h1 style="text-align: center;">Bem-vindos(as) ao reino mágico das Princesas Disney! ✨👑</h1>
-            <img src="./src/img/castelo.png" alt="">
         </body>
         </html>`);
 });
